@@ -1,0 +1,22 @@
+<?php
+    include_once("connection.php");
+    if(isset($_POST['submit1']))
+    {
+        $id=$_POST['id'];
+        $nameID=$_POST['nameID'];
+        $name=$_POST['name'];
+        $email=$_POST['email'];
+        $password=$_POST['password'];
+        require_once 'functions.php';
+        if(uidExists($conn,$nameID,$email))
+		{
+			header("location:updateUser.php?id=$id&error=userNameTaken");
+			exit();
+		}
+        updateUser($conn,$id,$nameID,$name,$email,$password);
+    }
+    else
+    {
+    exit();
+    }
+?>
